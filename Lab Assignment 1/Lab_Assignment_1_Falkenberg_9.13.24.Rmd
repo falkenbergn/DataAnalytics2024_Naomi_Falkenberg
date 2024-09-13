@@ -1,0 +1,180 @@
+---
+title: 4600-02 Lab Assignment 1
+name: Naomi Falkenberg
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+```{r}
+EPI_data <- read.csv("C:/Users/chaos/Downloads/epi2024results06022024.csv")
+View(EPI_data)
+attach(EPI_data) # sets the ‘default’ object
+fix(EPI_data) # launches a simple data editor – test it!
+EPI.new # prints out values EPI_data$EPI.ne
+tf <- is.na(EPI.new) # records True values if the value is NA 
+E <- EPI.new[!tf] # filters out NA values, new array
+summary(EPI.new) # stats 
+fivenum(EPI.new,na.rm=TRUE)
+```
+```{r}
+stem(EPI.new) # stem and leaf plot
+
+```
+
+```{r}
+hist(EPI.new)
+hist(EPI.new, seq(20., 80., 1.0), prob=TRUE) 
+lines(density(EPI.new,na.rm=TRUE,bw=1.)) # or try bw=“SJ” 
+rug(EPI.new)
+```
+```{r}
+boxplot(EPI.new, APO.new)
+ 
+```
+```{r}
+hist(EPI.new, seq(20., 80., 1.0), prob=TRUE)
+lines (density(EPI.new,na.rm=TRUE,bw=1.)) 
+rug(EPI.new)
+```
+```{r}
+hist(EPI.new, seq(20., 80., 1.0), prob=TRUE)
+lines (density(EPI.new,na.rm=TRUE,bw="SJ"))
+rug(EPI.new) 
+x<-seq(20,80,1) 
+q<- dnorm(x,mean=42, sd=5,log=FALSE)
+lines(x,q)
+lines(x,.4*q) 
+ln<-dnorm(x,mean=65, sd=5,log=FALSE) 
+lines(x,.12*q)
+```
+```{r}
+#Exercise 2: fitting a distribution beyond histograms
+#Cumulative density function
+plot(ecdf(EPI.new), do.points=FALSE, verticals=TRUE) 
+```
+```{r}
+#Quantile-Quantile
+qqnorm(EPI.new); qqline(EPI.new) 
+```
+```{r}
+#Make a Q-Q plot against the generating distribution by:
+qqplot(rnorm(ppoints(250)), EPI.new, xlab = "Q-Q plot for norm dsn") 
+qqline(EPI.new)
+qqplot(rt(ppoints(250), df = 5), EPI.new, xlab = "Q-Q plot for t dsn") 
+qqline(EPI.new)
+```
+```{r}
+#Excerise 2a: fitting a distribution
+#do the same exploration and fitting for another 2 variables in the EPI dataset, i.e. primary variables
+#Variable 1: APO
+APO_data <- read.csv("C:/Users/chaos/Downloads/epi2024results06022024.csv")
+attach(APO_data) # sets the ‘default’ object
+fix(APO_data) # launches a simple data editor – test it!
+APO.new # prints out values EPI_data$EPI.new
+```
+```{r}
+stem(APO.new) # stem and leaf plot
+```
+```{r}
+hist(APO.new)
+hist(APO.new, seq(0., 100., 1.0), prob=TRUE) 
+lines(density(APO.new,na.rm=TRUE,bw=1.)) # or try bw=“SJ” 
+rug(APO.new)
+```
+```{r}
+boxplot(APO.new, APO.old)
+```
+```{r}
+hist(APO.new, seq(0., 100., 1.0), prob=TRUE)
+lines (density(APO.new,na.rm=TRUE,bw=1.)) 
+rug(APO.new)
+```
+```{r}
+hist(APO.new, seq(0., 100., 1.0), prob=TRUE)
+lines (density(APO.new,na.rm=TRUE,bw="SJ"))
+rug(APO.new) 
+x<-seq(0,100,1) 
+q<- dnorm(x,mean=42, sd=5,log=FALSE)
+lines(x,.4*q) 
+ln<-dnorm(x,mean=65, sd=5,log=FALSE) 
+lines(x,.12*q)
+```
+```{r}
+hist(APO.new, seq(0., 100., 1.0), prob=TRUE)
+x<-seq(0,100,1) 
+q=dt(x,df=1)
+lines(x,.12*q)
+```
+```{r}
+#Cumulative density function
+plot(ecdf(APO.new), do.points=FALSE, verticals=TRUE) 
+```
+```{r}
+#Quantile-Quantile
+qqnorm(APO.new); qqline(APO.new) 
+```
+```{r}
+#Make a Q-Q plot against the generating distribution by:
+qqplot(rnorm(ppoints(250)), APO.new, xlab = "Q-Q plot for norm dsn") 
+qqline(APO.new)
+qqplot(rt(ppoints(250), df = 5), APO.new, xlab = "Q-Q plot for t dsn") 
+qqline(APO.new)
+```
+```{r}
+#Variable 2: WRS
+WRS_data <- read.csv("C:/Users/chaos/Downloads/epi2024results06022024.csv")
+attach(WRS_data) # sets the ‘default’ object
+fix(WRS_data) # launches a simple data editor – test it!
+WRS.new # prints out values EPI_data$EPI.new
+```
+```{r}
+stem(WRS.new) # stem and leaf plot
+```
+```{r}
+hist(WRS.new)
+hist(WRS.new, seq(0., 100., 1.0), prob=TRUE) 
+lines(density(WRS.new,na.rm=TRUE,bw=1.)) # or try bw=“SJ” 
+rug(WRS.new)
+```
+```{r}
+boxplot(WRS.new, WRS.old)
+```
+```{r}
+hist(WRS.new, seq(0., 100., 1.0), prob=TRUE)
+lines (density(WRS.new,na.rm=TRUE,bw=1.)) 
+rug(WRS.new)
+```
+```{r}
+hist(WRS.new, seq(0., 100., 1.0), prob=TRUE)
+lines (density(WRS.new,na.rm=TRUE,bw="SJ"))
+rug(WRS.new) 
+x<-seq(0,100,1) 
+q<- dnorm(x,mean=42, sd=5,log=FALSE)
+lines(x,.4*q) 
+ln<-dnorm(x,mean=65, sd=5,log=FALSE) 
+lines(x,.12*q)
+```
+```{r}
+#Cumulative density function
+plot(ecdf(WRS.new), do.points=FALSE, verticals=TRUE) 
+```
+```{r}
+#Quantile-Quantile
+qqnorm(WRS.new); qqline(WRS.new) 
+```
+```{r}
+#Make a Q-Q plot against the generating distribution by:
+qqplot(rnorm(ppoints(250)), WRS.new, xlab = "Q-Q plot for norm dsn") 
+qqline(WRS.new)
+qqplot(rt(ppoints(250), df = 5), WRS.new, xlab = "Q-Q plot for t dsn") 
+qqline(WRS.new)
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
