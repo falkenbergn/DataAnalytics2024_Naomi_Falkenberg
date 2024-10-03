@@ -88,7 +88,7 @@ for (k in ks) {
   cm = as.matrix(table(Actual=KNNpred, Predicted = abalone.test$age.group, dnn=list('predicted','actual')))
   accuracy <- c(accuracy,sum(diag(cm))/length(abalone.test$age.group)) 
 }
-plot(ks,accuracy,type = "b", ylim = c(0.66,0.69))
+plot(ks,accuracy,type = "b", ylim = c(0.66,0.70))
 #Iris Subset 1.
 s_iris <- sample(150, 105)  # (~70% training data)
 iris.train <- iris[s_iris, ]
@@ -113,7 +113,7 @@ for(k in ks) {
   cm <- as.matrix(table(Actual = iris.test$Species, Predicted = KNNpred))
   accuracy <- c(accuracy, sum(diag(cm)) / length(iris.test$Species))
 }
-plot(ks, accuracy, type = "b", ylim = c(0.93, 0.96), main = "Accuracy vs. k-values", xlab = "k", ylab = "Accuracy")
+plot(ks, accuracy, type = "b", ylim = c(0.86, 0.96), main = "Accuracy vs. k-values", xlab = "k", ylab = "Accuracy")
 
 #Iris Subset 2.
 s_iris <- sample(150, 105)  # (~70% training data)
@@ -254,3 +254,4 @@ labeled.clusters[labeled.clusters == "1"] <- "young"
 labeled.clusters[labeled.clusters == "2"] <- "adult"
 labeled.clusters[labeled.clusters == "3"] <- "old"
 table(labeled.clusters, abalone.norm[,9])
+
